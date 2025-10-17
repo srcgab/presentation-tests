@@ -1,0 +1,34 @@
+language: pt-BR
+review_style: formal
+review_length: medium        # tiny | short | medium | long
+paths_to_ignore:
+  - "bin/"
+  - "obj/"
+  - "node_modules/"
+  - "tests/helpers/"
+disable_review_categories:
+  - "documentation"
+security:
+  severity_threshold: medium
+  detect_secrets: true
+project_rules:
+  - "Classes de domínio devem usar PascalCase"
+  - "Evitar uso de MD5/SHA1; utilizar bcrypt ou Argon2 para hashes de senha."
+  - "Cada método público novo deve ter pelo menos 1 teste de happy path e 1 de borda."
+path_instructions:
+  - path: "codes/"
+    instructions: "Revisar segurança e conformidade com padrões internos. Checar uso de injeção de dependência."
+unit_test_generation:
+  enabled: true
+  target_framework: "pytest"
+  include_edge_cases: true
+  test_style: "arrange-act-assert"
+notifications:
+  notify_on: ["summary","security","unit_tests"]
+  auto_comment_updates: true
+knowledge_base:
+  filePatterns:
+    - "docs/test_instruction.md"
+reviews:
+  auto_title_instructions: |
+    Generate a concise PR title. Append this marker at the end of the title: DUMMY_ABC123
